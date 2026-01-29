@@ -1,0 +1,283 @@
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد الذكاء الاصطناعي الشامل</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <h2>الذكاء الاصطناعي</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-section="image-generator">
+                    <i class="fas fa-image"></i>
+                    <span>توليد الصور</span>
+                </li>
+                <li class="nav-item" data-section="text-generator">
+                    <i class="fas fa-align-left"></i>
+                    <span>توليد النصوص</span>
+                </li>
+                <li class="nav-item" data-section="audio-generator">
+                    <i class="fas fa-music"></i>
+                    <span>توليد الصوت</span>
+                </li>
+            </ul>
+            <div class="theme-toggle">
+                <i class="fas fa-moon"></i>
+                <span>الوضع الداكن</span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <header>
+                <h1>مولد الذكاء الاصطناعي الشامل</h1>
+                <select id="language-selector">
+                    <option value="ar" selected>العربية</option>
+                    <option value="en">English</option>
+                </select>
+            </header>
+
+            <!-- قسم توليد الصور -->
+            <section id="image-generator" class="generator-section active">
+                <h2>توليد الصور بالذكاء الاصطناعي</h2>
+                
+                <div class="input-area">
+                    <div class="prompt-container">
+                        <label for="image-prompt">أدخل وصفًا للصورة:</label>
+                        <textarea id="image-prompt" placeholder="مثال: غروب شمس في غابة استوائية، ألوان دافئة وتفاصيل طبيعية دقيقة"></textarea>
+                    </div>
+                    
+                    <div class="options-container">
+                        <div class="option-group">
+                            <label>نمط الصورة:</label>
+                            <select id="image-style">
+                                <option value="realistic">واقعية</option>
+                                <option value="artistic">فنية</option>
+                                <option value="sci-fi">خيال علمي</option>
+                                <option value="futuristic">مستقبلية</option>
+                                <option value="anime">أنمي</option>
+                                <option value="cartoon">كرتون</option>
+                            </select>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>دقة الصورة:</label>
+                            <select id="image-quality">
+                                <option value="standard">قياسية</option>
+                                <option value="hd">HD</option>
+                                <option value="4k">4K</option>
+                            </select>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>نسبة العرض إلى الارتفاع:</label>
+                            <select id="aspect-ratio">
+                                <option value="1:1">1:1 (مربع)</option>
+                                <option value="16:9">16:9 (أفقي)</option>
+                                <option value="9:16">9:16 (عمودي)</option>
+                                <option value="4:3">4:3 (تقليدي)</option>
+                                <option value="3:2">3:2 (صورة)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>تحسين تلقائي:</label>
+                            <label class="switch">
+                                <input type="checkbox" id="auto-enhance" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button id="generate-image" class="generate-btn">
+                        <i class="fas fa-magic"></i> توليد الصورة
+                    </button>
+                </div>
+                
+                <div class="result-area">
+                    <div class="loader" id="image-loader">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <p>جاري توليد الصورة...</p>
+                    </div>
+                    
+                    <div class="image-preview-container">
+                        <div id="image-preview" class="preview-placeholder">
+                            <i class="fas fa-image"></i>
+                            <p>ستظهر الصورة هنا</p>
+                        </div>
+                        <div class="image-controls">
+                            <button id="download-image" class="control-btn" disabled>
+                                <i class="fas fa-download"></i> تحميل
+                            </button>
+                            <button id="share-image" class="control-btn" disabled>
+                                <i class="fas fa-share-alt"></i> مشاركة
+                            </button>
+                            <button id="regenerate-image" class="control-btn" disabled>
+                                <i class="fas fa-redo"></i> إعادة التوليد
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery">
+                        <h3>المعرض الأخير</h3>
+                        <div class="gallery-items" id="image-gallery"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم توليد النصوص -->
+            <section id="text-generator" class="generator-section">
+                <h2>توليد النصوص بالذكاء الاصطناعي</h2>
+                
+                <div class="input-area">
+                    <div class="prompt-container">
+                        <label for="text-prompt">أدخل موضوع أو سؤالاً:</label>
+                        <textarea id="text-prompt" placeholder="مثال: اكتب مقالاً قصيراً عن أهمية الذكاء الاصطناعي في التعليم"></textarea>
+                    </div>
+                    
+                    <div class="options-container">
+                        <div class="option-group">
+                            <label>نوع النص:</label>
+                            <select id="text-type">
+                                <option value="article">مقال</option>
+                                <option value="story">قصة</option>
+                                <option value="poem">قصيدة</option>
+                                <option value="summary">ملخص</option>
+                                <option value="code">كود برمجي</option>
+                            </select>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>طول النص:</label>
+                            <select id="text-length">
+                                <option value="short">قصير</option>
+                                <option value="medium" selected>متوسط</option>
+                                <option value="long">طويل</option>
+                            </select>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>الأسلوب:</label>
+                            <select id="text-style">
+                                <option value="formal">رسمي</option>
+                                <option value="casual">غير رسمي</option>
+                                <option value="creative">إبداعي</option>
+                                <option value="academic">أكاديمي</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button id="generate-text" class="generate-btn">
+                        <i class="fas fa-pen-fancy"></i> توليد النص
+                    </button>
+                </div>
+                
+                <div class="result-area">
+                    <div class="loader" id="text-loader">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <p>جاري توليد النص...</p>
+                    </div>
+                    
+                    <div class="text-result-container">
+                        <div id="text-result" class="text-result"></div>
+                        <div class="text-controls">
+                            <button id="copy-text" class="control-btn" disabled>
+                                <i class="fas fa-copy"></i> نسخ
+                            </button>
+                            <button id="download-text" class="control-btn" disabled>
+                                <i class="fas fa-download"></i> تحميل
+                            </button>
+                            <button id="regenerate-text" class="control-btn" disabled>
+                                <i class="fas fa-redo"></i> إعادة التوليد
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم توليد الصوت -->
+            <section id="audio-generator" class="generator-section">
+                <h2>توليد الصوت بالذكاء الاصطناعي</h2>
+                
+                <div class="input-area">
+                    <div class="prompt-container">
+                        <label for="audio-prompt">أدخل النص المراد تحويله إلى صوت:</label>
+                        <textarea id="audio-prompt" placeholder="مثال: مرحباً، كيف حالك اليوم؟"></textarea>
+                    </div>
+                    
+                    <div class="options-container">
+                        <div class="option-group">
+                            <label>الصوت:</label>
+                            <select id="voice-type">
+                                <option value="alloy">Alloy (محايد)</option>
+                                <option value="echo">Echo (عميق)</option>
+                                <option value="fable">Fable (دافئ)</option>
+                                <option value="onyx">Onyx (قوي)</option>
+                                <option value="nova">Nova (أنثوي)</option>
+                                <option value="shimmer">Shimmer (رقيق)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>السرعة:</label>
+                            <input type="range" id="speech-speed" min="0.5" max="2" step="0.1" value="1">
+                            <span id="speed-value">1.0x</span>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>الجودة:</label>
+                            <select id="audio-quality">
+                                <option value="standard">قياسية</option>
+                                <option value="high">عالية</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button id="generate-audio" class="generate-btn">
+                        <i class="fas fa-volume-up"></i> توليد الصوت
+                    </button>
+                </div>
+                
+                <div class="result-area">
+                    <div class="loader" id="audio-loader">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <p>جاري توليد الصوت...</p>
+                    </div>
+                    
+                    <div class="audio-result-container">
+                        <div id="audio-player" class="audio-player">
+                            <audio id="audio-element" controls></audio>
+                        </div>
+                        <div class="audio-controls">
+                            <button id="download-audio" class="control-btn" disabled>
+                                <i class="fas fa-download"></i> تحميل
+                            </button>
+                            <button id="regenerate-audio" class="control-btn" disabled>
+                                <i class="fas fa-redo"></i> إعادة التوليد
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script type="module" src="config.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
